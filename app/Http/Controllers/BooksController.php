@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Routing\redirect;
 
 class BooksController extends Controller
 {
@@ -13,7 +15,12 @@ class BooksController extends Controller
      */
     public function index()
     {
-        dd('fgh');
+        // get all the books
+        $books = Book::all();
+
+        // view
+        return  view('books.index',compact('books'));
+        
     }
 
     /**
@@ -23,7 +30,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -34,7 +41,8 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create($request->all());
+        return redirect(route('homeBooks'));
     }
 
     /**
@@ -45,7 +53,8 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('books.show',compact('book'));
     }
 
     /**
@@ -56,7 +65,7 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd("edit");
     }
 
     /**
@@ -68,7 +77,7 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('update');
     }
 
     /**
