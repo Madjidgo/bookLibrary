@@ -14,8 +14,9 @@ class AddAuthorAndCategoryToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('author')->after('resume');
-            $table->string('category')->after('author');
+            $table->string('author',20)->after('resume');
+            $table->string('category',20)->after('author');
+            $table->boolean('borrow')->after('category')->nullable();
         });
     }
 
