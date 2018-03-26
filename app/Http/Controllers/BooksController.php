@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBookFormRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Routing\redirect;
@@ -39,7 +40,7 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBookFormRequest $request)
     {
         Book::create($request->all());
         return redirect(route('homeBooks'));
