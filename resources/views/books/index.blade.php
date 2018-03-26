@@ -105,7 +105,7 @@
 
             <td>
               <a class="btn btn-small btn-success" href="{{route('books.show',$book)}}">Show</a>
-              <a class="btn btn-small btn-info" href="{{route('books.update',$book)}}">Edit</a>
+              <a class="btn btn-small btn-info" href="{{route('books.edit',$book)}}">Edit</a>
               <!-- add method post delete -->
              
               <a class="btn btn-small btn-danger" href="">delette</a>
@@ -122,6 +122,7 @@
       
       @endif
        
+       {{$books->links()}}
        
         </div>
         @stop

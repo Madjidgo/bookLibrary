@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBookFormRequest;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\paginate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\redirect;
 
@@ -17,7 +18,7 @@ class BooksController extends Controller
     public function index()
     {
         // get all the books
-        $books = Book::all();
+        $books = Book::paginate(5);
 
         // view
         return  view('books.index',compact('books'));
@@ -43,7 +44,7 @@ class BooksController extends Controller
     public function store(CreateBookFormRequest $request)
     {
         Book::create($request->all());
-        return redirect(route('homeBooks'));
+        return redirect()->route('homeBooks');
     }
 
     /**
@@ -66,7 +67,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        dd("edit");
+           $book = Book::findOrFail($id);
+           return view('books.edit',compact('book'));
     }
 
     /**
