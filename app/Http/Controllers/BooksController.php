@@ -8,6 +8,7 @@ use App\Models\Book;
 use Illuminate\Database\Eloquent\paginate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\redirect;
+use MercurySeries\Flashy\Flashy;
 
 class BooksController extends Controller
 {
@@ -47,9 +48,9 @@ class BooksController extends Controller
         
               
          Book::create($request->all());
-
-        session()->flash('status', 'Task was successful!');
-         session()->flash('type', 'success');
+       Flashy::message('Create was success!');
+        // session()->flash('status', 'Task was successful!');
+        //  session()->flash('type', 'success');
            
          
         return redirect(route('homeBooks'));
@@ -100,9 +101,10 @@ class BooksController extends Controller
             'resume' => $request->resume,            
             'category' => $request->category
             ]);
+           Flashy::primaryDark('Modify was success!');
 
-          session()->flash('status', 'Update was successful!');
-          session()->flash('type', 'success');
+          // session()->flash('status', 'Update was successful!');
+          // session()->flash('type', 'success');
          return redirect(route('books.show', compact('book')));
 
     }
@@ -117,8 +119,10 @@ class BooksController extends Controller
     {
        
         $book->delete();
-          session()->flash('status', 'Delete was successful!');
-          session()->flash('type', 'danger');
-        return redirect(route('homeBooks',compact('request')));
+     
+          Flashy::error('Delete was success!');
+          // session()->flash('status', 'Delete was successful!');
+          // session()->flash('type', 'danger');
+        return redirect(route('homeBooks'));
     }
 }
