@@ -83,7 +83,8 @@
         <table class=" table table-responsive-lg table-hover table-bordered ">
 
           <!-- plural book-->
-          <caption>Number of {{str_plural('book',$books->count())}} : {{  $books->count() }} {{$books->links()}}</caption>
+          <caption>Number of {{str_plural('book',$books->count())}} : {{  $books->count() }}
+           {{$books->links('vendor.pagination.bootstrap-4')}}</caption>
           <thead>
             <tr>
               <th scope="col">#</th>

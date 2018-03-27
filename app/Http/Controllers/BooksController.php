@@ -47,6 +47,9 @@ class BooksController extends Controller
         
               
          Book::create($request->all());
+
+        session()->flash('status', 'Task was successful!');
+         session()->flash('type', 'success');
            
          
         return redirect(route('homeBooks'));
@@ -58,9 +61,10 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        $book = Book::findOrFail($id);
+
+        
         return view('books.show',compact('book'));
     }
 
@@ -70,9 +74,9 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-           $book = Book::findOrFail($id);
+           
            return view('books.edit',compact('book'));
     }
 
@@ -97,6 +101,8 @@ class BooksController extends Controller
             'category' => $request->category
             ]);
 
+          session()->flash('status', 'Update was successful!');
+          session()->flash('type', 'success');
          return redirect(route('books.show', compact('book')));
 
     }
@@ -107,10 +113,12 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
        
-        Book::destroy($id);
-        return redirect(route('homeBooks'));
+        $book->delete();
+          session()->flash('status', 'Delete was successful!');
+          session()->flash('type', 'danger');
+        return redirect(route('homeBooks',compact('request')));
     }
 }

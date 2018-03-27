@@ -15,8 +15,17 @@
 </head>
 <body>
 
+		@if(session()->has('status')) 
+			<div class="alert alert-{{session('type')}}">
+
+    		{{session('status')}}
+		
+		</div>
+		@endif
+
 
     @yield('content')
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
