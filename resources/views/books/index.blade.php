@@ -8,7 +8,7 @@
 
         <!-- Start Modal -->
         
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Book</button>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">To Record New Book</button>
 
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -24,11 +24,12 @@
                 <form action="{{route('books.store')}}" method="POST">
                   {{ csrf_field() }}
 
-                  <div class="form-group">
+                  <div class="form-group {{ $errors->has('title') ? 'has-error' :'' }}">
                     <label for="recipient-name" class="col-form-label">Title:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="title">
+                    <input type="text" class="form-control" id="recipient-name" name="title" value="{{ old('title') }}">
                             <!-- message error -->
                         {!! $errors->first('title','<span class="text-danger">:message</span>') !!}
+
                   </div>
 
                   <div class="form-group">
@@ -55,7 +56,7 @@
                        {!! $errors->first('resume','<span class="text-danger">:message</span>') !!}
                   </div>
 
-                    <button type="submit" class="btn btn-default">CREATE</button>
+                    <button type="submit" class="btn btn-default">Record</button>
                 </form>
 
                     <div class="modal-footer">

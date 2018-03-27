@@ -30,5 +30,14 @@ class CreateBookFormRequest extends FormRequest
             'category' =>'required|max:20|alpha',
             
         ];
+
+    }
+    // customing message
+        public function messages()
+    {
+        return [
+            'title.required' => 'A title is required',
+            'resume.required'  => 'A message is required',
+        ];
     }
 }
