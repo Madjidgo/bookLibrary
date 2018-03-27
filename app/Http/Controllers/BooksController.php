@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBookFormRequest;
+use App\Http\Requests\UpdateBookFormRequest;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\paginate;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class BooksController extends Controller
     public function index()
     {
         // get all the books
-        $books = Book::paginate(5);
+        $books = Book::paginate(10);
 
         // view
         return  view('books.index',compact('books'));
@@ -43,8 +44,12 @@ class BooksController extends Controller
      */
     public function store(CreateBookFormRequest $request)
     {
-        Book::create($request->all());
-        return redirect()->route('homeBooks');
+        
+              
+         Book::create($request->all());
+           
+         
+        return redirect(route('homeBooks'));
     }
 
     /**
@@ -78,9 +83,22 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBookFormRequest $request ,$id)
     {
-        dd('update');
+         
+      
+
+         $book = Book::findOrFail($id);
+
+         $book->update([
+            'title' => $request->title,
+            'author'  => $request->author,
+            'resume' => $request->resume,            
+            'category' => $request->category
+            ]);
+
+         return redirect(route('books.show', compact('book')));
+
     }
 
     /**
@@ -91,6 +109,8 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        dd('destroy');
+       
+        Book::destroy($id);
+        return redirect(route('homeBooks'));
     }
 }

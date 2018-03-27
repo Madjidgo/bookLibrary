@@ -76,19 +76,20 @@
 
           
                 <!-- verify books -->
-        @if($books->isEmpty())
+        @if ($books->isEmpty())
           <p>aucun évennement</p>
         @else
         <table class=" table table-responsive-lg table-hover table-bordered ">
 
           <!-- plural book-->
-          <caption>Number of {{str_plural('book',$books->count())}} : {{  $books->count() }}</caption>
+          <caption>Number of {{str_plural('book',$books->count())}} : {{  $books->count() }} {{$books->links()}}</caption>
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Titel</th>
               <th scope="col">Resum</th>
               <th scope="col">Author</th>
+              <th scope="col">Category</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -101,28 +102,32 @@
               <td><a href="{{route('books.show',$book)}}">{{$book->title}}</a></td>
               <td>{{$book->resume}}</td>
               <td>{{$book->author}}</td>
-              
+              <td>{{$book->category}}</td>              
 
             <td>
               <a class="btn btn-small btn-success" href="{{route('books.show',$book)}}">Show</a>
               <a class="btn btn-small btn-info" href="{{route('books.edit',$book)}}">Edit</a>
-              <!-- add method post delete -->
-             
-              <a class="btn btn-small btn-danger" href="">delette</a>
+
+               <form action="{{url('books', [$book->id])}}" method="POST">
+                   {{method_field('DELETE')}}
+                    {{csrf_field()}}
+                 <input type="submit" class="btn btn-small btn-danger" value="Delete"/>
+              </form>
+            
              
 
               
-           
-              @endforeach 
             </td>
           </tr>
+              @endforeach 
+           
 
           </tbody>
         </table>
       
       @endif
        
-       {{$books->links()}}
+
        
         </div>
         @stop
