@@ -99,7 +99,7 @@
 
               @foreach ($books as  $book)
 
-            <tr>
+          <tr>
               <th scope="row">.</th>
               <td><a href="{{route('books.show',$book)}}">{{$book->title}}</a></td>
               <td>{{$book->resume}}</td>
@@ -110,15 +110,16 @@
               <a class="btn btn-small btn-success" href="{{route('books.show',$book)}}">Show</a>
               <a class="btn btn-small btn-info" href="{{route('books.edit',$book)}}">Edit</a>
 
-               <form action="{{url('books', [$book->id])}}" method="POST">
-                   {{method_field('DELETE')}}
+               <form
+                action="{{url('books', [$book->id])}}"
+                method="POST"
+                onsubmit ="return confirm('Are your sur');">
                     {{csrf_field()}}
-                 <input type="submit" class="btn btn-small btn-danger" value="Delete"/>
-              </form>
-            
-             
 
-              
+                   {{method_field('DELETE')}}
+                 <input type="submit" class="btn btn-small btn-danger" value="Delete"/>
+                 
+              </form> 
             </td>
           </tr>
               @endforeach 

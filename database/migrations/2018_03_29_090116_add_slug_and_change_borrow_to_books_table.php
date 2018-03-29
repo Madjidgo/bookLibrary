@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAuthorAndCategoryToBooksTable extends Migration
+class AddSlugAndChangeBorrowToBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class AddAuthorAndCategoryToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('author',20)->after('resume');
-            $table->string('category',20)->after('author');
-            $table->boolean('borrow')->after('category');
+               $table->string('slug',20)->after('title');
+                $table->boolean('borrow')->default(0)->change();
         });
     }
 
@@ -28,8 +27,8 @@ class AddAuthorAndCategoryToBooksTable extends Migration
     public function down()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('author','category');
-            $table->boolean('borrow');
+            $table->dropColum('slug');
+            $table->boolean('borrow')->change();
         });
     }
 }

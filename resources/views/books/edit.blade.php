@@ -54,9 +54,9 @@
             <button type="submit" class="btn btn-success" >Update Book</button>
           </div>
 
+	<!-- buttton retry -->
          <a " href="{{ route('homeBooks') }}"> Retry</a>
         </div>
       </form>
 
-	<!-- buttton retry -->
 @stop
