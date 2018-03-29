@@ -49,9 +49,7 @@ class BooksController extends Controller
               
          Book::create($request->all());
        Flashy::message('Create was success!');
-        // session()->flash('status', 'Task was successful!');
-        //  session()->flash('type', 'success');
-           
+      
          
         return redirect(route('homeBooks'));
     }
@@ -88,23 +86,22 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookFormRequest $request ,$id)
+    public function update(UpdateBookFormRequest $request ,Book $book)
     {
          
       
 
-         $book = Book::findOrFail($id);
+         $book = Book::findOrFail($book->id);
 
          $book->update([
             'title' => $request->title,
             'author'  => $request->author,
             'resume' => $request->resume,            
-            'category' => $request->category
+            'category' => $request->category,
+            'borrow' => $request->borrow,
             ]);
            Flashy::primaryDark('Modify was success!');
 
-          // session()->flash('status', 'Update was successful!');
-          // session()->flash('type', 'success');
          return redirect(route('books.show', compact('book')));
 
     }

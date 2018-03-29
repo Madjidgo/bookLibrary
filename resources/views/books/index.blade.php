@@ -50,14 +50,15 @@
                        {!! $errors->first('category','<span class="text-danger">:message</span>') !!}
                   </div>
 
+
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">Resume:</label>
                     <textarea class="form-control" id="message-text" name="resume"></textarea>
                        {!! $errors->first('resume','<span class="text-danger">:message</span>') !!}
                   </div>
 
-                    <button type="submit" class="btn btn-default">Record</button>
                 </form>
+                    <button type="submit" class="btn btn-default">Record</button>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,6 +93,7 @@
               <th scope="col">Resum</th>
               <th scope="col">Author</th>
               <th scope="col">Category</th>
+              <th scope="col">Borrow</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -104,14 +106,15 @@
               <td><a href="{{route('books.show',$book)}}">{{$book->title}}</a></td>
               <td>{{$book->resume}}</td>
               <td>{{$book->author}}</td>
-              <td>{{$book->category}}</td>              
+              <td>{{$book->category}}</td>
+              <td>{{$book->borrow}}</td>              
 
             <td>
               <a class="btn btn-small btn-success" href="{{route('books.show',$book)}}">Show</a>
               <a class="btn btn-small btn-info" href="{{route('books.edit',$book)}}">Edit</a>
 
                <form
-                action="{{url('books', [$book->id])}}"
+                action="{{route('books.destroy',$book)}}"
                 method="POST"
                 onsubmit ="return confirm('Are your sur');">
                     {{csrf_field()}}

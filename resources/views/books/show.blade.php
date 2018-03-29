@@ -12,6 +12,7 @@
       <th scope="col">Resum</th>
       <th scope="col">Author</th>
       <th scope="col">Category</th>
+      <th scope="col"> Borrow</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
       <td>{{$book->resume}}</td>
       <td>{{$book->author}}</td>
       <td>{{$book->category}}</td>
+      <td>{{$book->borrow}}</td>
       
 
     <td>

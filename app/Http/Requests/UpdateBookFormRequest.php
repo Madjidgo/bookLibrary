@@ -28,6 +28,8 @@ class UpdateBookFormRequest extends FormRequest
             'author'  => 'required',
             'resume'  => 'required',
             'category' => 'required',
+            'borrow' => 'required',
+            
             ];
     }
 }

@@ -48,6 +48,17 @@
             </div>
           </div>
 
+
+        <div class="row">
+          <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="price">Borrow:</label>
+              <input type="text" class="form-control" name="borrow" value="{{$book->borrow}}">
+               {!! $errors->first('borrow','<span class="text-danger">:message</span>') !!}
+          
+            </div>
+          </div>
+
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">

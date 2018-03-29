@@ -2,32 +2,26 @@
 
 namespace App\Models;
 
+
+use App\Models\Traits\{SlugRoutable,Sluggable};
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+	
+	use SlugRoutable,Sluggable;
+
     protected $fillable = ['title', 'resume','author','category','borrow'];
 
 
-    /**
- * Get the route key for the model.
- *
- * @return string
- */
-public function getRouteKeyName()
-{
-    return 'slug';
+	protected static function boot()
+	{
+		parent::boot();
+		static::updating(function($book){
+			$book->slug = str_slug($book->title);
+			});
+	}
+			
 }
+	
 
-// method boot
-protected static function boot()
-{
-    parent::boot();
-
-    // pendant la creation met le slug
-    static::creating(function($book){
-    	$book->slug = str_slug($book->title);
-    });
-}
-
-}
