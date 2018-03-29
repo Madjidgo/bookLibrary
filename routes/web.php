@@ -22,3 +22,4 @@ Route::resource('books','BooksController');
   // Route::get('/', function () {
   //       return view('welcome');
   //   });
+ Route::resource('users', 'UsersController');
