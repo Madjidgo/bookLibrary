@@ -34,19 +34,19 @@
 
                   <div class="form-group">
                     <label for="recipient-name1" class="col-form-label">Borrow:</label>
-                    <input type="text" class="form-control" id="recipient-name1" name="borrow">
+                    <input type="text" class="form-control" id="recipient-name1" name="borrow" value="{{ old('Borrow') }}">
 
                   </div>
 
                   <div class="form-group">
                     <label for="recipient-name2" class="col-form-label">Author:</label>
-                    <input type="text" class="form-control" id="recipient-name2" name="author">
+                    <input type="text" class="form-control" id="recipient-name2" name="author" value="{{ old('author') }}">
                      {!! $errors->first('author','<span class="text-danger">:message</span>') !!}
                   </div>
 
                   <div class="form-group">
                     <label for="recipient-name3" class="col-form-label">Category:</label>
-                    <input type="text" class="form-control" id="recipient-name3" name="category">
+                    <input type="text" class="form-control" id="recipient-name3" name="category" value="{{ old('category') }}">
                        {!! $errors->first('category','<span class="text-danger">:message</span>') !!}
                   </div>
 
@@ -57,8 +57,8 @@
                        {!! $errors->first('resume','<span class="text-danger">:message</span>') !!}
                   </div>
 
-                </form>
                     <button type="submit" class="btn btn-default">Record</button>
+                </form>
 
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

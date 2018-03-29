@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -14,26 +13,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-		
-<!-- 
-		@if(session()->has('status')) 
-			<div class="alert alert-{{session('type')}}">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+    </head>
+        @yield('content')
+  
 
-    		{{session('status')}}
-		
-		</div>
-		@endif -->
-
-
-    @yield('content')
-
-
-<!-- Scripts -->
-
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="//code.jquery.com/jquery.js"></script>
-@include('flashy::message')
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+        @include('flashy::message')
 </body>
 </html>

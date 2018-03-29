@@ -24,7 +24,7 @@ class CreateBookFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:20|',
+            'title' => 'required|min:3',
             'resume' => 'required|max:500',
             'author' => 'required|max:20',
             'category' =>'required|max:20|alpha',
@@ -37,7 +37,7 @@ class CreateBookFormRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'resume.required'  => 'A message is required',
+            'title.min' =>'min 3 characters',
         ];
     }
 }
